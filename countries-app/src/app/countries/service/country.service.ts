@@ -20,4 +20,14 @@ export class CountryService {
     // .pipe(catchError(error => of([])))
     // Permite atrapar cualquier error y retornarlo como respuesta
   }
+
+  searchByCapital(term: string = ""): Observable<Country[]> {
+    const url = `${this.apiUrl}/capital/${term}`;
+    return this.httpClient.get<Country[]>(url);
+  }
+
+  getCountryByCode(code: string = ""): Observable<Country[]> {
+    const url = `${this.apiUrl}/alpha/${code}`;
+    return this.httpClient.get<Country[]>(url);
+  }
 }

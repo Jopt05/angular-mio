@@ -11,13 +11,19 @@ export class ByCountryComponent {
   public term: string = '';
   public isError: boolean = false;
   public countries: Country[] = [];
+  public placeholder: string = "Buscar por país";
 
   constructor(
     private countryService: CountryService
   ) {}
 
-  search() {
-    this.countryService.searchCountry(this.term)
+  suggestions = (term: string) => {
+    this.isError = false;
+  }
+
+  search(term: string) {
+    this.term = term;
+    this.countryService.searchCountry(term)
       .subscribe({
         next: res => this.countries = res,
         error: error => {
