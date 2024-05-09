@@ -1,0 +1,3 @@
+<form (ngSubmit)="search()" autocomplete="off">
+  <input (input)="onKeyPressed()" type="text" name="term" [(ngModel)]="term" placeholder="Buscar pais..." class="form-control"/>
+</form>

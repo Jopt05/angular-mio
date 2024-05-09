@@ -1,0 +1,7 @@
+<app-country-input [placeholder]="placeholder" (onEnter)="search($event)" (onDebounce)="suggestions($event)"></app-country-input>
+
+<div *ngIf="isError" class="alert alert-danger">No se encontro nada con el término "{{ term }}"</div>
+
+<div *ngIf="!isError && countries.length !== 0" class="row">
+  <app-country-table [data]="countries"></app-country-table>
+</div>

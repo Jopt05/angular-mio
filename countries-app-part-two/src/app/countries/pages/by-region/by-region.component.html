@@ -1,0 +1,48 @@
+<h3>Buscar por región <small>{{ activeRegion | titlecase }}</small></h3>
+<hr>
+
+<h5>Seleccione la región:</h5>
+<div class="row">
+    <div class="col">
+      <!-- Clase condicional  -->
+        <!-- <button
+            *ngFor="let region of regions"
+            (click)="activateRegion(region)"
+            class="btn btn-outline-primary mx-3"
+            [class.btn-primary]="region == activeRegion"
+        > -->
+
+        <!-- NgClass -->
+        <!-- <button
+            *ngFor="let region of regions"
+            (click)="activateRegion(region)"
+            class="btn btn-outline-primary mx-3"
+            [ngClass]="{
+              'btn-primary': activeRegion == region,
+              'btn-outline-primary': region !== activeRegion
+            }"
+          >
+            {{ region }}
+        </button> -->
+
+        <!-- Clases condicionales  -->
+        <!-- <button
+          *ngFor="let region of regions"
+          (click)="activateRegion(region)"
+          class="mx-1 btn"
+          [class]="(region == activeRegion) ? 'btn-primary' : 'btn-outline-primary'"
+        >
+          {{ region }}
+        </button> -->
+
+
+        <button
+          *ngFor="let region of regions"
+          (click)="activateRegion(region)"
+          class="mx-1 btn"
+          [class]="getClassCSS(region)"
+        >
+          {{ region }}
+        </button>
+    </div>
+</div>
