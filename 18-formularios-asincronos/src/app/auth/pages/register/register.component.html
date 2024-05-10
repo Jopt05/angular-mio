@@ -1,0 +1,44 @@
+<h2>
+  Register
+</h2>
+
+<form (ngSubmit)="save()" [formGroup]="form" >
+  <label for="name">
+    Nombre
+  </label>
+  <input formControlName="name" name="name" type="text">
+  <span *ngIf="isInvalidField('name')">Debe ser en formato de nombre y apellido</span>
+
+
+  <label for="email">
+    Email
+  </label>
+  <input formControlName="email" name="email" type="text">
+  <span *ngIf="isInvalidField('email')">{{ emailError }}</span>
+
+  <label for="username">
+    Username
+  </label>
+  <input formControlName="username" name="username" type="text">
+  <span *ngIf="isInvalidField('username')">Debe ser diferente a Ferrer</span>
+
+
+  <label for="password">
+    Password
+  </label>
+  <input formControlName="password" name="password" type="text">
+
+
+  <label for="confirm_password">
+    Confirmar password
+  </label>
+  <input formControlName="confirm_password" name="confirm_password" type="text">
+
+  <button [disabled]="form.pending" type="submit">Crear</button>
+
+  <pre>
+    {{ form.value | json }}
+  </pre>
+
+  <pre>{{ form.status | json }}</pre>
+</form>

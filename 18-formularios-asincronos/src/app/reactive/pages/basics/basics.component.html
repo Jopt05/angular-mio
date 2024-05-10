@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col">
+      <form [formGroup]="myForm" (ngSubmit)="save()" autocomplete="off">
+          <div class="mb-3 row">
+              <label class="col-sm-3 col-form-control">Producto *</label>
+              <div class="col-sm-9">
+                  <input
+                      type="text"
+                      class="form-control"
+                      formControlName="name"
+                      name="product"
+                      placeholder="Nombre del producto"
+                      required
+                      minlength="3">
+                      <span *ngIf="isInvalidField('name')" class="form-text text-danger">Debe de ser de 3 letras</span>
+              </div>
+          </div>
+
+
+          <div class="mb-3 row">
+              <label class="col-sm-3 col-form-control">Precio *</label>
+              <div class="col-sm-9">
+                  <input
+                      type="number"
+                      class="form-control"
+                      formControlName="price"
+                      name="price"
+                      placeholder="Precio del producto"
+                      required>
+                    <span *ngIf="isInvalidField('price')" class="form-text text-danger">
+                      El precio debe ser mayor o igual a 0
+                    </span>
+              </div>
+          </div>
+
+
+          <div class="mb-3 row">
+              <label class="col-sm-3 col-form-control">Existencias *</label>
+              <div class="col-sm-9">
+                  <input
+                      type="number"
+                      class="form-control"
+                      formControlName="stocks"
+                      name="stocks"
+                      placeholder="Existencias del producto"
+                      required>
+              </div>
+          </div>
+
+
+          <div class="row">
+              <div class="col">
+                  <button type="submit" class="btn btn-primary float-end">Guardar</button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
