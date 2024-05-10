@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col">
+      <form [formGroup]="myForm" (ngSubmit)="save()" autocomplete="off">
+          <div class="mb-3 row">
+              <label class="col-sm-3 col-form-control">Producto *</label>
+              <div class="col-sm-9">
+                  <input
+                      type="text"
+                      class="form-control"
+                      formControlName="name"
+                      name="product"
+                      placeholder="Nombre del producto"
+                      required
+                      minlength="3">
+                      <span *ngIf="isInvalidField('name')" class="form-text text-danger">Debe de ser de 3 letras</span>
+              </div>
+          </div>
+
+          <div formArrayName="favorites">
+            <div *ngFor="let fav of favoritesArr.controls; let i = index">
+              <input [formControlName]="i" >
+              <button (click)="deleteFav(i)">X</button>
+            </div>
+          </div>
+
+          <div>
+              <div>Agregar</div>
+              <div>
+                  <div>
+                      <input class="form-control" placeholder="Agregar favorito" (keyup.enter)="addFav()" [formControl]="newFavorite">
+                      <button (click)="addFav()" type="button">Agregar</button>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col">
+                  <button type="submit" class="btn btn-primary float-end">Guardar</button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>

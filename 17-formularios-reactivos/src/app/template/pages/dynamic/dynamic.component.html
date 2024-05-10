@@ -1,0 +1,46 @@
+<form (ngSubmit)="save()" #myForm="ngForm" autocomplete="off">
+  <input
+    [ngModel]="person.name" required
+    name="name"
+    minlength="3"
+  />
+  <span *ngIf="myForm.controls['name']?.invalid && myForm.controls['name']?.touched">Debe ser más de 3 letras</span>
+
+  <input
+    *ngFor="let game of person.favorites; let i = index"
+    [(ngModel)]="game.name"
+    name="game_{{i}}"
+    required
+  >
+
+  <div class="input-group" *ngFor="let game of person.favorites; let i = index" >
+    <input class="form-control" [(ngModel)]="game.name" name="game_{{i}}" required>
+    <button class="btn btn-outline-danger" type="button" (click)="delete(i)">Eliminar</button>
+  </div>
+
+  <div class="input-group">
+    <input (keyup.enter)="addGame()" class="form-control" placeholder="Agregar favorito" [(ngModel)]="newGame" name="newGame" minlength="3">
+    <span *ngIf="myForm.controls['newGame']?.invalid && myForm.controls['newGame']?.touched">Debe ser más de 3 letras</span>
+    <button class="btn btn-dark" type="button" (click)="addGame()">Agregar</button>
+</div>
+
+  <button (click)="save()" [disabled]="myForm.invalid">Guardar</button>
+</form>
+
+
+
+<div class="row">
+  <div class="col">
+      <span>Valid</span>
+      <pre>{{ myForm.valid | json }}</pre>
+      <span>Valor</span>
+      <pre>{{ myForm.value | json }}</pre>
+
+      <span>Pristine</span>
+      <!-- Cuando no se ha alterado la info iniciak -->
+      <pre>{{ myForm.pristine | json }}</pre>
+      <span>Touched</span>
+      <!-- Si se ha tocado el form -->
+      <pre>{{ myForm.touched | json }}</pre>
+  </div>
+</div>
